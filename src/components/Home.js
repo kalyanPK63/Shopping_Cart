@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import "../Styles/Home.css";
 import Product from "./Product";
 
 function Home() {
+
+	const [posts, setPosts] = useState({ product: [] })
+
+	useEffect(() => {
+		const fetchPostList = async () => {
+			const { data } = await axios("http://localhost:8082/products/getproducts")
+
+			setPosts({ product: data })
+			console.log(data)
+		}
+		fetchPostList()
+	}, [setPosts])
+
 	return (
 		<div className="home">
 			<div className="home__container">
 				<div className="home__row">
-					<Product
-						id="6"
-						title="iPhone 9"
-						price={14990}
-						image="https://dummyjson.com/image/i/products/1/thumbnail.jpg"
-						rating={5}
-					/>
-					<Product
+					{
+						posts.product && posts.product.map(p => (
+							<Product
+								productId={p.productId}
+								productName={p.productName}
+								price={p.price}
+								image={p.image}
+								rating={p.rating}
+							/>
+						))
+					}
+
+					{/*<Product
 						id="1"
 						title="iPhone X"
 						price={29000}
@@ -62,7 +81,7 @@ function Home() {
 						price={1499}
 						image="https://dummyjson.com/image/i/products/27/thumbnail.webp"
 						rating={5}
-					/>
+				/>*/}
 				</div>
 				{/* <img
 					className="home__image"
@@ -71,20 +90,20 @@ function Home() {
 				/> */}
 
 				<div className="home__row">
-					
+
 				</div>
 
 				<div className="home__row">
-					
+
 				</div>
 
 				<div className="home__row">
-					
+
 				</div>
 				<div className="home__row">
-					
+
 				</div>
-				
+
 			</div>
 		</div>
 	);

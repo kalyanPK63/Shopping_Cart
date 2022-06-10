@@ -71,8 +71,11 @@ function Payment() {
 					</div>
 					<div className="payment__address">
 						<p>{user?.email}</p>
-						<p>G-81 , Apex Royal Castle</p>
-						<p>Indirapuram , Ghaziabad ,UP, India</p>
+						<p>
+							<text>
+								
+							</text>
+						</p>
 						{/*Address*/}
 					</div>
 				</div>
