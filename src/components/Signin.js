@@ -1,145 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 import '../Styles/Signin.css';
 
-const Signup = ( ) => {
+const Signup = () => {
 
-    const handleSignIn = () => {
 
-    }
+
+  const [data, setData] = useState({
+    fullName: "",
+    image: "",
+    emailid: "",
+    mobileNumber: "",
+    about: "",
+    dateOfBirth: "",
+    gender: "",
+    role: "",
+    password: "",
+    /*Addresses: {
+      houseNumber: "",
+      streetName: "",
+      colonyName: "",
+      city: "",
+      State: "",
+      pincode: ""
+    }*/
+  })
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setData(prevInput => {
+      return {
+        ...prevInput,
+        [name]: value
+      }
+    })
+  }
+  const handleSignIn = (event) => {
+    event.preventDefault();
+
+    const userProfile = {
+      fullName:data.fullName,
+      image: data.image,
+      emailid:data.emailid,
+      mobileNumber:data.mobileNumber,
+      about:data.about,
+      dateOfBirth:data.dateOfBirth,
+      gender:data.gender,
+      role:data.role,
+      password: data.password,
+      /*Addresses: {
+        houseNumber: data.Addresses,
+        streetName: data.Addresses,
+        colonyName:data.Addresses,
+        city:data.Addresses,
+        State:data.Addresses,
+        pincode:data.Addresses }*/
+  }
+  console.log(userProfile);
+
+  axios.post("http://localhost:8081/profileservice/add", userProfile)
+}
+
   return (
     <div className='container2'>
       <header className='h001'>
         <h1>Create a new account</h1>
       </header>
-      <form className='modal-content' method='post'>
+      <form className='modal-content' method='post' onSubmit={handleSignIn}>
         <div className='input-field'>
-          <input className='firstName' placeholder='First name'/>
-          <input className='Surname' placeholder='Surname'/>
-          
+          <input onChange={handleChange} className='fullName' placeholder='Full name' name='fullName' value={data.fullName} required />
+
           <br></br>
 
-          <label  for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required/>
+          <label for="image"><b>image</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter Image URL" name="image" value={data.image} required />
+
+          <label for="mobileNumber"><b>Mobile Number</b></label>
+          <input onChange={handleChange} type='number' placeholder="Enter Mobile Number" name="mobileNumber" value={data.mobileNumber} required />
+
+          <label for="email"><b>Email</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter Email" name="emailid" value={data.emailid} required />
 
           <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required/>
+          <input onChange={handleChange} type="password" placeholder="Enter Password" name="psw" required />
 
-          <label for="psw-repeat"><b>Confirm Password</b></label>
-          <input type="password" placeholder="Confirm Password" name="psw-repeat" required/>
+          <label for="password"><b>Confirm Password</b></label>
+          <input onChange={handleChange} type="password" placeholder="Confirm Password" name="password" value={data.password} required />
 
           <label for="DoB"><b>Date of birth</b></label>
-          <span>
-            <select className='Dob' label='date' name='DoB'>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-              <option value="25">25</option>
-              <option value="26">26</option>
-              <option value="27">27</option>
-              <option value="28">28</option>
-              <option value="29">29</option>
-              <option value="30">30</option>
-              <option value="31">31</option>
-            </select>
-            <select className='Dob' label='month' name='DoB'>
-              <option value="1">Jan</option>
-              <option value="2">Feb</option>
-              <option value="3">Mar</option>
-              <option value="4">Apr</option>
-              <option value="5">May</option>
-              <option value="6">Jun</option>
-              <option value="7">Jul</option>
-              <option value="8">Aug</option>
-              <option value="9">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
-            </select>
-            <select className='Dob' label='Year' name='DoB'>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
-              <option value="2018">2018</option>
-              <option value="2017">2017</option>
-              <option value="2016">2016</option>
-              <option value="2015">2015</option>
-              <option value="2014">2014</option>
-              <option value="2013">2013</option>
-              <option value="2012">2012</option>
-              <option value="2011">2011</option>
-              <option value="2010">2010</option>
-              <option value="2009">2009</option>
-              <option value="2008">2008</option>
-              <option value="2007">2007</option>
-              <option value="2006">2006</option>
-              <option value="2005">2005</option>
-              <option value="2004">2004</option>
-              <option value="2003">2003</option>
-              <option value="2002">2002</option>
-              <option value="2001">2001</option>
-              <option value="2000">2000</option>
-              <option value="1999">1999</option>
-              <option value="1998">1998</option>
-              <option value="1997">1997</option>
-              <option value="1996">1996</option>
-              <option value="1995">1995</option>
-              <option value="1994">1994</option>
-              <option value="1993">1993</option>
-              <option value="1992">1992</option>
-              <option value="1991">1991</option>
-              <option value="1990">1990</option>
-              <option value="1989">1989</option>
-              <option value="1988">1988</option>
-              <option value="1987">1987</option>
-              <option value="1986">1986</option>
-              <option value="1985">1985</option>
-              <option value="1984">1984</option>
-              <option value="1983">1983</option>
-              <option value="1982">1982</option>
-              <option value="1981">1981</option>
-              <option value="1980">1980</option>
-              <option value="1979">1979</option>
-              <option value="1978">1978</option>
-              <option value="1977">1977</option>
-              <option value="1976">1976</option>
-              <option value="1975">1975</option>
-              <option value="1974">1974</option>
-              <option value="1973">1973</option>
-              <option value="1972">1972</option>
-              <option value="1971">1971</option>
-              <option value="1970">1970</option>
-              <option value="1969">1969</option>
-              <option value="1968">1968</option>
-              <option value="1967">1967</option>
-              <option value="1966">1966</option>
-              <option value="1965">1965</option>
-              <option value="1964">1964</option>
-            </select>
-          </span>
+          <input onChange={handleChange} type='date' placeholder="Date of birth" name="dateOfBirth" value={data.dateOfBirth} required />
 
           <br></br>
 
@@ -147,26 +98,51 @@ const Signup = ( ) => {
           <span className='gender'>
             <span className='sex'>
               <label className='s001'>Male</label>
-              <input className='g001' type="radio" name="sex" value="1" />
+              <input onChange={handleChange} className='g001' type="radio" name="gender" value="Male" />
             </span>
             <span className='sex'>
               <label className='s001'>Female</label>
-              <input className='g001' type="radio" name="sex" value="2"/>
+              <input onChange={handleChange} className='g001' type="radio" name="gender" value="Female" />
             </span>
             <span className='sex'>
               <label className='s001'>Others</label>
-              <input className='g001' type="radio" name="sex" value="3"/>
+              <input onChange={handleChange} className='g001' type="radio" name="gender" value="Others" />
             </span>
           </span>
+
+          <label for="about"><b>About</b></label>
+          <input onChange={handleChange} type="text" placeholder="Write about Yourself" name="about" value={data.about} required />
+
+          <label for="role"><b>Role</b></label>
+          <input onChange={handleChange} className='g001' type="radio" name="role" value="user" /> User
+
+          {/*<label for="houseNumber"><b>House Number</b></label>
+          <input onChange={handleChange} type="number" placeholder="Enter House Number" name="Addresses" value={data.Addresses.houseNumber} required />
+
+          <label for="streetName"><b>Street Name</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter Street name" name="Addresses.streetName" value={data.Addresses.streetName} required />
+
+          <label for="colonyName"><b>Colony Name</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter colony name" name="Addresses.colonyName" value={data.Addresses.colonyName} required />
+
+          <label for="city"><b>City</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter city" name="Addresses.city" value={data.Addresses.city} required />
+
+          <label for="state"><b>State</b></label>
+          <input onChange={handleChange} type="text" placeholder="Enter state" name="Addresses.state" value={data.Addresses.State} required />
+
+          <label for="pincode"><b>Pincode</b></label>
+  <input onChange={handleChange} type="number" placeholder="Enter pincode" name="Addresses.pincode" value={data.Addresses.pincode} required />*/}
         </div>
         <div className='Regbutton'>
-          <Link to={"/home"}>
-            <button type='submit' onClick={handleSignIn} className="Signup">Sign In</button>
-          </Link>
+          <button type='submit' className="Signup">Sign In</button>
+          {/*<Link to={"/home"}>
+            <button type='submit' className="Signup">Sign In</button>
+</Link>*/}
         </div>
       </form>
       <div className='olduser'>
-        <button type="submit" onClick = {() => { window.location.replace('/login')}} className='a001'>
+        <button type="submit" onClick={() => { window.location.replace('/login') }} className='a001'>
           Already have an Account?
         </button>
       </div>

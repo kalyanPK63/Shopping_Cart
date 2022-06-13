@@ -42,7 +42,7 @@ button:hover {
     padding: 16px;
 }
 
-.firstName, .Surname{
+.fullName{
     padding: 13px;
     margin: 5px 5px 22px 5px;
     border-radius: 4px;
