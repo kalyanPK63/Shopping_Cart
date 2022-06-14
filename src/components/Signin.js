@@ -41,14 +41,14 @@ const Signup = () => {
     event.preventDefault();
 
     const userProfile = {
-      fullName:data.fullName,
+      fullName: data.fullName,
       image: data.image,
-      emailid:data.emailid,
-      mobileNumber:data.mobileNumber,
-      about:data.about,
-      dateOfBirth:data.dateOfBirth,
-      gender:data.gender,
-      role:data.role,
+      emailid: data.emailid,
+      mobileNumber: data.mobileNumber,
+      about: data.about,
+      dateOfBirth: data.dateOfBirth,
+      gender: data.gender,
+      role: data.role,
       password: data.password,
       /*Addresses: {
         houseNumber: data.Addresses,
@@ -57,11 +57,11 @@ const Signup = () => {
         city:data.Addresses,
         State:data.Addresses,
         pincode:data.Addresses }*/
-  }
-  console.log(userProfile);
+    }
+    console.log(userProfile);
 
-  axios.post("http://localhost:8081/profileservice/add", userProfile)
-}
+    axios.post("http://localhost:8081/profileservice/add", userProfile)
+  }
 
   return (
     <div className='container2'>
@@ -74,11 +74,14 @@ const Signup = () => {
 
           <br></br>
 
-          <label for="image"><b>image</b></label>
+          <label for="image"><b>Image</b></label>
           <input onChange={handleChange} type="text" placeholder="Enter Image URL" name="image" value={data.image} required />
 
           <label for="mobileNumber"><b>Mobile Number</b></label>
-          <input onChange={handleChange} type='number' placeholder="Enter Mobile Number" name="mobileNumber" value={data.mobileNumber} required />
+          <input onChange={handleChange} className='mbN' type='number' placeholder="Enter Mobile Number" name="mobileNumber" value={data.mobileNumber} required />
+
+          <br></br>
+          <br></br>
 
           <label for="email"><b>Email</b></label>
           <input onChange={handleChange} type="text" placeholder="Enter Email" name="emailid" value={data.emailid} required />
@@ -90,7 +93,7 @@ const Signup = () => {
           <input onChange={handleChange} type="password" placeholder="Confirm Password" name="password" value={data.password} required />
 
           <label for="DoB"><b>Date of birth</b></label>
-          <input onChange={handleChange} type='date' placeholder="Date of birth" name="dateOfBirth" value={data.dateOfBirth} required />
+          <input onChange={handleChange} className='Dob' type='date' placeholder="Date of birth" name="dateOfBirth" value={data.dateOfBirth} required />
 
           <br></br>
 
@@ -110,11 +113,18 @@ const Signup = () => {
             </span>
           </span>
 
+          <br></br>
+          <br></br>
+
           <label for="about"><b>About</b></label>
           <input onChange={handleChange} type="text" placeholder="Write about Yourself" name="about" value={data.about} required />
 
           <label for="role"><b>Role</b></label>
-          <input onChange={handleChange} className='g001' type="radio" name="role" value="user" /> User
+          <span className='r001'>
+            <label className='r002'>User</label>
+            <input onChange={handleChange} type="radio" name="role" value="user" />
+          </span>
+
 
           {/*<label for="houseNumber"><b>House Number</b></label>
           <input onChange={handleChange} type="number" placeholder="Enter House Number" name="Addresses" value={data.Addresses.houseNumber} required />
@@ -135,10 +145,10 @@ const Signup = () => {
   <input onChange={handleChange} type="number" placeholder="Enter pincode" name="Addresses.pincode" value={data.Addresses.pincode} required />*/}
         </div>
         <div className='Regbutton'>
-          <button type='submit' className="Signup">Sign In</button>
-          {/*<Link to={"/home"}>
+
+          <Link to={"/home"}>
             <button type='submit' className="Signup">Sign In</button>
-</Link>*/}
+          </Link>
         </div>
       </form>
       <div className='olduser'>

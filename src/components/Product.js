@@ -36,6 +36,9 @@ function Product({ productId, productName, price, image, rating }) {
 							<p>⭐</p>
 						))}
 				</div>
+				{/*<span class="stars" title="{value as decimal}">
+    <span style="width={value/5*100}%;"/>
+						</span>*/}
 			</div>
 
 			<button onClick={addToBasket}>Add to Cart</button>
