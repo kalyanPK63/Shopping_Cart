@@ -7,6 +7,8 @@ function Home() {
 
 	const [posts, setPosts] = useState({ product: [] })
 
+	const [searchTerm, setSearchTerm] = useState("")
+
 	useEffect(() => {
 		const fetchPostList = async () => {
 			const { data } = await axios("http://localhost:8082/products/getproducts")
@@ -19,10 +21,21 @@ function Home() {
 
 	return (
 		<div className="home">
+			
 			<div className="home__container">
+				<center>
+					<input className="searchB" placeholder="Search" onChange={event => {setSearchTerm(event.target.value)}}/>
+				</center>
+				
 				<div className="home__row">
 					{
-						posts.product && posts.product.map(p => (
+						posts.product && posts.product.filter((val) => {
+							if (searchTerm == ""){
+								return val
+							} else if (val.productName.toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+								return val
+							}
+						}).map(p => (
 							<Product
 								productId={p.productId}
 								productName={p.productName}

@@ -21,7 +21,7 @@ function Header() {
 			</Link>
 
 			<div className="header__search">
-				<input className="header__searchInput" placeholder="Search" />
+				<input className="header__searchInput" />
 			</div>
 			<div className="header__nav">
 				<Link to={!user && "/login"}>

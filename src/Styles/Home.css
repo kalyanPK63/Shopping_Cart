@@ -18,6 +18,16 @@
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
 }
+
+.searchB{
+	height: 12px;
+	padding: 10px;
+	border: solid 1px #474e5d;
+	width: 88%;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
 .home__row {
 	display: flex;
 	flex-wrap: wrap;

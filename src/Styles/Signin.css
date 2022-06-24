@@ -108,6 +108,9 @@ hr {
   margin-left: 10px;
 }
 
+.errorM{
+    color: red;
+}
 
 .clearfix::after {
     content: "";

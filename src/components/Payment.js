@@ -73,7 +73,7 @@ function Payment() {
 						<p>{user?.email}</p>
 						<p>
 							<text>
-								
+								<input />
 							</text>
 						</p>
 						{/*Address*/}

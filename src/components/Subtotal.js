@@ -8,6 +8,15 @@ import { useHistory } from "react-router-dom";
 function Subtotal() {
 	const history = useHistory();
 
+	{/*const handleE = (event) => {
+		if(basket != null){
+			history.push("/payment")
+		}
+		else if{
+			<CustomizedDialogs/>
+		}
+	  }*/}
+
 	const [{ basket }, dispatch] = useStateValue();
 	return (
 		<div className="subtotal">
@@ -29,9 +38,12 @@ function Subtotal() {
 				thousandSeparator={true}
 				prefix={" ₹ "}
 			/>
+			{/*<button onClick={handleE()}>
+				Proceed to Checkout
+				</button>*/}
 			<button onClick={(e) => history.push("/payment")}>
 				Proceed to Checkout
-			</button>
+				</button>
 		</div>
 	);
 }
